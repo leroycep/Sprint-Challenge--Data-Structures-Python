@@ -1,5 +1,5 @@
 import time
-from binary_search_tree import BSTree
+from avl_tree import AVLTree
 
 start_time = time.time()
 
@@ -15,7 +15,7 @@ duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
 start_tree_time = time.time()
-name_tree = BSTree()
+name_tree = AVLTree()
 for name in names_2:
     name_tree.insert(name)
 
