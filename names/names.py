@@ -37,25 +37,26 @@ start_list_time = time.time()
 duplicates = []
 
 # We'll sort the names_2 list so we can do a binary search on it
+names_1.sort()
 names_2.sort()
 
-def list_contains(array, value):
-    start = 0
-    end = len(array)
-    while start < end:
-        mid = (start + end) // 2
-        if array[mid] == value:
-            return True
-        elif array[mid] > value:
-            end = mid
-        elif array[mid] < value:
-            start = mid + 1
-    return False
-
-
-for name in names_1:
-    if list_contains(names_2, name):
-        duplicates.append(name)
+idx_1 = 0
+idx_2 = 0
+while True:
+    if names_1[idx_1] == names_2[idx_2]:
+        duplicates.append(names_1[idx_1])
+        idx_1 += 1
+        idx_2 += 1
+    elif names_1[idx_1] < names_2[idx_2]:
+        if idx_1 < len(names_1) - 1:
+            idx_1 += 1
+        else:
+            break
+    else:
+        if idx_2 < len(names_2) - 1:
+            idx_2 += 1
+        else:
+            break
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
